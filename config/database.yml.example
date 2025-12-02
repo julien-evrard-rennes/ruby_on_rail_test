@@ -1,0 +1,3 @@
+username: devops
+password: <%= ENV['DB_PASSWORD'] %> # définie localement
+host: localhost
