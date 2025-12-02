@@ -46,9 +46,9 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: devops
-  password: motdepasse
+  password: <%= ENV['DB_PASSWORD'] %>
   host: localhost
 
 development:
   <<: *default
-  database: projet_test_db    
+  database: projet_test_db
