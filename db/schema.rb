@@ -11,17 +11,17 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2025_12_03_122839) do
-  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_uca1400_ai_ci", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.string "label"
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.text "content"
+  create_table "posts", charset: "utf8mb4", collation: "utf8mb4_uca1400_ai_ci", force: :cascade do |t|
+    t.text "content", size: :long
     t.datetime "created_at", null: false
-    t.string "title"
+    t.string "name"
     t.datetime "updated_at", null: false
   end
 end

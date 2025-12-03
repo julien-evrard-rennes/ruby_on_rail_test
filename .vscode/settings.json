@@ -13,6 +13,20 @@
             "name": "MariaDB",
             "database": "projet_test_db",
             "username": "devops"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "MariaDB2",
+            "database": "projet_test_db",
+            "username": "root"
         }
     ]
 }
