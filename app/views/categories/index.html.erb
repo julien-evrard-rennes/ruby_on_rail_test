@@ -1,0 +1,35 @@
+<h1>Categories</h1>
+
+session : <%= @session %>
+
+<table class="table">
+
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+<tbody>
+
+
+    <% @categories.each do |category| %>
+    <tr>
+        <td><%= category.id %></td>
+        <td><%= category.label %></td>
+        <td>
+            <a href="<%= edit_category_path(category.id) %>" class="btn btn-default">Modifier</a>
+            <%= button_to "Supprimer", category_path(category.id),method: :delete,
+            data: { confirm: "Êtes-vous sûr ?" },
+            class: "btn btn-danger" %>
+        </td>
+
+    <% end %>
+
+</tbody>
+</table>
+
+    <p>
+       <a href="<%= new_category_path %>" class="btn btn-success">Créer une Catégorie</a>
+    </p>

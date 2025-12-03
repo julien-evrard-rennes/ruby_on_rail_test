@@ -39,7 +39,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="<%=salut_path %>"> Salut</a>
+        <a class="nav-link" href="<%=salut_path %>">Salut</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=posts_path %>">Articles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=categories_path %>">Catégories</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,6 +62,13 @@
   </div>
 </nav>
 <div class="container" style="padding-top: 5rem;">
+  <% flash.each do |name, msg| %>
+
+  <div class="alert alert-<%= name %>" role="alert">
+    <%= msg %>
+    </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
