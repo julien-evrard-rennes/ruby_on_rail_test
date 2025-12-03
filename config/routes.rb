@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   get "/bonjour(/:name)", to: "pages#salut", as: "salut"
 
-  get "/articles", to: "posts#index", as: "posts"
+  resources :posts
 end
