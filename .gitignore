@@ -36,3 +36,4 @@
 # Ne pas versionner les fichiers de config sensibles
 config/database.yml
 
+config/database.yml
