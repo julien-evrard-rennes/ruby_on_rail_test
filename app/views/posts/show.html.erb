@@ -1,9 +1,21 @@
-<h1><%= @post.title %></h1>
+<% content_for(:title, @post.title)%>
 
-<p><%= @post.content %></p>
+<% content_for :content do %>
 
-<p>
+    <h1><%= @post.title %></h1>
 
-    <a href="<%= posts_path %>" class="btn btn-secondary">Retour aux articles</a>
+    <p><%= @post.content %></p>
 
-</p>
+    <p>
+
+        <a href="<%= posts_path %>" class="btn btn-secondary">Retour aux articles</a>
+
+    </p>
+<% end %>
+
+<% content_for :sidebar do %>
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<% end %>
+
+<%= render template: "layouts/sidebar" %>
