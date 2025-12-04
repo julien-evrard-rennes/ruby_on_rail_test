@@ -10,7 +10,6 @@ class PostsController < ApplicationController
       format.html
       format.json { render json: @posts }
       format.xml  { render xml:  @posts }
-      format.rtf  { render plain :"azazzeazeez" }
     end
   end
 
@@ -26,8 +25,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-    redirect_to post_path(@post.id), success: "L'article a bien été mis à jour."
+    if @post.update(post_params)
+      redirect_to post_path, success: "L'article a bien été mis à jour."
+    else
+      render :edit
+    end
   end
 
   def new
@@ -35,8 +37,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.create(post_params)
-    redirect_to posts_path(post.id), success: "L'article a bien été créé avec succès."
+    post = Post.new(post_params)
+    if post.valid?
+      post.save
+      redirect_to posts_path, success: "L'article a bien été créé avec succès."
+    else
+      @post = post
+      render :new
+    end
   end
 
   def destroy
