@@ -3,11 +3,23 @@ class PostsController < ApplicationController
 
   def index
     cookies.permanent.signed[:username] = { values: "Jean-Luc" }
-    session[:user_id] = { username: "Jean-Luc", role: "admin", id: 42 }
+    # session[:user_id] = { username: "Jean-Luc", role: "admin", id: 42 }
     @posts = Post.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+      format.xml  { render xml:  @posts }
+      format.rtf  { render plain :"azazzeazeez" }
+    end
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
+      format.xml  { render xml:  @post }
+    end
   end
 
   def edit
