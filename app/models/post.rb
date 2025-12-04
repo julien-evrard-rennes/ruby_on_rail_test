@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
-  validates :title, title: { message: "Holala mais il manque un titre !" }
+  include Sluggable
 
-  validates :content, title: true
+  validates :title, presence: { message: "Holala mais il manque un titre !" }
 
-  # uniqueness: { case_sensitive: false, message: "doit être unique" }
+  validates :slug, format: { with: /\A[a-z0-9\-]+\z/ }, uniqueness: true
 
   def as_json(options = nil)
     super(only: [ :title, :created_at, :id ])
