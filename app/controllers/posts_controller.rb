@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     cookies.permanent.signed[:username] = { values: "Jean-Luc" }
     # session[:user_id] = { username: "Jean-Luc", role: "admin", id: 42 }
-    @posts = Post.all
+    @posts = Post.online(0).alpha.all
 
     respond_to do |format|
       format.html
