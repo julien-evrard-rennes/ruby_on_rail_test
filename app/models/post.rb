@@ -1,9 +1,8 @@
 class Post < ApplicationRecord
   include Sluggable
-
-  # validates :title, presence: { message: "Holala mais il manque un titre !" }
-
-  # validates :slug, format: { with: /\A[a-z0-9\-]+\z/ }, uniqueness: true
+  belongs_to :category, counter_cache: true
+  has_and_belongs_to_many :tags
+  has_many :metas, as: :metatable
 
   # default_scope { order(created_at: :desc) }
 
