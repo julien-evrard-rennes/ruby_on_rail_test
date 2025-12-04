@@ -45,10 +45,21 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: devops
+  username: root
   password: motdepasse
   host: localhost
 
 development:
   <<: *default
   database: projet_test_db
+
+  
+test:
+  <<: *default
+  database: projet_test_db_test
+
+production:
+  <<: *default
+  database: projet_test_db_prod
+  username: prod_user
+  password: motdepasse
