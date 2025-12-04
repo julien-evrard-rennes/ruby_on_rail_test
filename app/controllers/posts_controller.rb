@@ -3,19 +3,33 @@ class PostsController < ApplicationController
 
   def index
     cookies.permanent.signed[:username] = { values: "Jean-Luc" }
-    session[:user_id] = { username: "Jean-Luc", role: "admin", id: 42 }
-    @posts = Post.all
+    # session[:user_id] = { username: "Jean-Luc", role: "admin", id: 42 }
+    @posts = Post.includes(:category, :tags).online(0).alpha.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+      format.xml  { render xml:  @posts }
+    end
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
+      format.xml  { render xml:  @post }
+    end
   end
 
   def edit
   end
 
   def update
-    @post.update(post_params)
-    redirect_to post_path(@post.id), success: "L'article a bien été mis à jour."
+    if @post.update(post_params)
+      redirect_to post_path, success: "L'article a bien été mis à jour."
+    else
+      render :edit
+    end
   end
 
   def new
@@ -23,8 +37,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.create(post_params)
-    redirect_to posts_path(post.id), success: "L'article a bien été créé avec succès."
+    post = Post.new(post_params)
+    if post.valid?
+      post.save
+      redirect_to posts_path, success: "L'article a bien été créé avec succès."
+    else
+      @post = post
+      render :new
+    end
   end
 
   def destroy
@@ -35,7 +55,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :slug)
   end
 
   def set_post
