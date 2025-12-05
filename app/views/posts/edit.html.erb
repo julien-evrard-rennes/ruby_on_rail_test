@@ -1,4 +1,8 @@
 <h1>Éditer l'article</h1>
 
+<%= url_for(@post) %>
+
+<%= gravatar('contact@bidon.fr') %>
+
 <%= render 'form', post: @post %>
 

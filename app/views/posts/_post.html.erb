@@ -12,8 +12,11 @@
     <% end %>
     
     <p>
-       <a href="<%= post_path(post.id) %>" class="btn btn-primary">Lire l'article complet</a>
-       <a href="<%= edit_post_path(post.id) %>" class="btn btn-default">Modifier l'article</a>
+        <%= link_to('Lire la suite', post, class:"btn btn-primary")%>
+        <%= link_to('Éditer', [:edit, post], class:"btn btn-default")%>
+        <%= link_to('Supprimer', post_path(post.id), class:"btn btn-danger", data: {confirm: 'êtes vous sûr ?', method: :delete} )%>
+       <!-- <a href="<%= post_path(post.id) %>" class="btn btn-primary">Lire l'article complet</a>
+       <a href="<%= edit_post_path(post.id) %>" class="btn btn-default">Modifier l'article</a> -->
        <%= button_to "Supprimer l'article", post_path(post.id),method: :delete,
             data: { confirm: "Êtes-vous sûr ?" },
             class: "btn btn-danger" %>

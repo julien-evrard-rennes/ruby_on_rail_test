@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
+  include GravatarHelper
+
   def index
     cookies.permanent.signed[:username] = { values: "Jean-Luc" }
     # session[:user_id] = { username: "Jean-Luc", role: "admin", id: 42 }
@@ -55,7 +57,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :slug)
+    params.require(:post).permit(:title, :content, :slug, :category_id)
   end
 
   def set_post

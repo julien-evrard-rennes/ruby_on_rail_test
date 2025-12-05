@@ -23,6 +23,11 @@
 </div>
 
 <div class="form-group">
+    <%= f.label :category, "Categorie de l'article" %>
+    <%= f.select :category_id, Category.pluck(:label, :id) %>
+</div>
+
+<div class="form-group">
     <%= f.label :contenu, "Contenu de l'article" %>
     <%= f.text_area :content, class: "form-control" %>
 </div>
